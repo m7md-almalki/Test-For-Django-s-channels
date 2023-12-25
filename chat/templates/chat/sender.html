@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sender</title>
+
+    <style>
+
+        body{
+            margin: 0px;
+            background-color: rgb(65, 48, 0);
+            text-align: center;
+        }
+
+        h1{
+            margin-top: 15px;
+            font-size: 25px;
+            font-weight: bold;
+            color: white;
+        }
+
+        input{
+            margin: 15px auto;
+            font-size: 20px;
+            display: block;
+            height: 50px;
+            width: 400px;
+
+            border-color: rgb(0, 0, 0);
+            border-radius: 10px;
+            border-width: 2.5px;
+        }
+
+        button{
+            margin: 15px auto;
+            font-size: 15px;
+            display: block;
+            height: 50px;
+            width: 250px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <h1>Send a message to your group</h1>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <input type="text" name="input_value">
+        <button>Send</button>
+
+    </form>
+
+</body>
+</html>
