@@ -10,29 +10,45 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
+import ast
+import subprocess
+
 import environ
 from pathlib import Path
 from logging.handlers import SysLogHandler
 
-env = environ.Env()
-# reading .env file
-environ.Env.read_env()
+
+def get_environ_vars():
+    # for production
+    completed_process = subprocess.run(
+        ['/opt/elasticbeanstalk/bin/get-config', 'environment'],
+        stdout=subprocess.PIPE,
+        text=True,
+        check=True
+    )
+
+    return ast.literal_eval(completed_process.stdout)
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure--$*acn0u=00==bpis&$ym-9nt5_tr_*tcdwd38#s6rxppqj#4$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com']
+# reading .env file
+ENV_VARS = {}
+
+if not DEBUG:    
+    ENV_VARS = get_environ_vars()
+
+
+ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', '127.0.0.1:8000']
 
 
 # Application definition
@@ -145,7 +161,7 @@ if DEBUG:
     CHANNEL_HOST = 'redis://127.0.0.1:6379'
 
 else:
-    CHANNEL_HOST = env('REDIS_PROD_HOST')
+    CHANNEL_HOST = ENV_VARS['REDIS_PROD_HOST']
 
 
 CHANNEL_LAYERS = {
