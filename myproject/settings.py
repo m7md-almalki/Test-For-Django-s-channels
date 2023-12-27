@@ -41,16 +41,14 @@ SECRET_KEY = 'django-insecure--$*acn0u=00==bpis&$ym-9nt5_tr_*tcdwd38#s6rxppqj#4$
 DEBUG = False
 
 # reading .env file
-ENV_VARS = {}
-
-if not DEBUG:    
-    ENV_VARS = get_environ_vars()
+ENV_VARS = None
 
 
 if not DEBUG:
-    ALLOWED_HOSTS = ENV_VARS['ALLOWED_PROD_HOST'].replace(' ', '').split(', ')
-    # ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', 
-    #                     '51.21.112.20', '172.31.28.236']
+    ENV_VARS = get_environ_vars()
+    # ALLOWED_HOSTS = ENV_VARS['ALLOWED_PROD_HOST'].replace(' ', '').split(',')
+    ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', 
+                        '51.21.112.20', '172.31.28.236']
 
 else:
     ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', '127.0.0.1']
