@@ -49,11 +49,10 @@ if DEBUG:
 
 else:
     ENV_VARS = get_environ_vars()
-    # ALLOWED_HOSTS = ENV_VARS['ALLOWED_PROD_HOST'].replace(' ', '').split(',')
-    ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', 
-                        '51.21.112.20', '172.31.28.236']
+    ALLOWED_HOSTS = ENV_VARS['ALLOWED_PROD_HOST'].replace(' ', '').split(',')
+    # ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', 
+    #                     '51.21.112.20', '172.31.28.236']
 
-    print("ALLOWED HOSTS: ", ALLOWED_HOSTS)
 # Application definition
 
 if not DEBUG:
