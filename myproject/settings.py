@@ -48,13 +48,19 @@ if not DEBUG:
 
 
 if not DEBUG:
-    # ALLOWED_HOSTS = ENV_VARS['ALLOWED_PROD_HOST'].split(', ')
-    ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', 
-                        '51.21.112.20', '172.31.28.236']
+    ALLOWED_HOSTS = ENV_VARS['ALLOWED_PROD_HOST'].replace(' ', '').split(', ')
+    # ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', 
+    #                     '51.21.112.20', '172.31.28.236']
 
 else:
     ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', '127.0.0.1']
 # Application definition
+
+if not DEBUG:
+    CORS_ALLOWED_ORIGINS = ENV_VARS['ALLOWED_CORS'].replace(' ', '').split(',')
+
+    CORS_ORIGIN_WHITELIST = ENV_VARS['ALLOWED_CORS'].replace(' ', '').split(',')
+    CSRF_TRUSTED_ORIGINS = ENV_VARS['ALLOWED_CORS'].replace(' ', '').split(',')
 
 INSTALLED_APPS = [
     'channels',
