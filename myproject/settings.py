@@ -110,12 +110,25 @@ ASGI_APPLICATION = 'myproject.asgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+
+else:
+    DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql_psycopg2',
+                'NAME': ENV_VARS['PROD_DB_NAME'],
+                'USER': ENV_VARS['PROD_DB_USER'],
+                'PASSWORD': ENV_VARS['PROD_DB_PASSWORD'],
+                'HOST': ENV_VARS['PROD_DB_HOST'],
+                'PORT': ENV_VARS['PROD_DB_PORT'],
+            }
+        }
 
 
 # Password validation
@@ -182,6 +195,22 @@ CHANNEL_LAYERS = {
     },
 }
 
+
+# if not DEBUG:
+#     AWS_ACCESS_KEY_ID = ENV_VARS['AWS_ACCESS_KEY_ID']
+#     AWS_SECRET_ACCESS_KEY = ENV_VARS['AWS_SECRET_ACCESS_KEY']
+#     AWS_STORAGE_BUCKET_NAME = ENV_VARS['AWS_STORAGE_BUCKET_NAME']
+
+#     AWS_S3_REGION_NAME = ENV_VARS['AWS_S3_REGION_NAME']
+#     AWS_QUERYSTRING_AUTH = False # True/False value
+#     AWS_S3_CUSTOM_DOMAIN = ENV_VARS['AWS_S3_CUSTOM_DOMAIN']  
+#     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': f'max-age={86400}'}
+#     AWS_DEFAULT_ACL = None
+
+# else:
+#     # pass
+#     DEFAULT_FILE_STORAGE = 'quickit.s3storage.MediaStore'
+#     MEDIA_URL = '/media/'
 
 # enables logging in production
 LOGGING = {
