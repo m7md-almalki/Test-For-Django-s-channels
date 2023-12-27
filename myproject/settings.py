@@ -53,7 +53,7 @@ if not DEBUG:
     ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', '172.31.39.208']
 
 else:
-    ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', '127.0.0.1:8000']
+    ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
@@ -99,6 +99,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
+ASGI_APPLICATION = 'myproject.asgi.application'
 
 
 # Database
@@ -158,7 +159,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-ASGI_APPLICATION = 'myproject.asgi.application'
 
 if DEBUG:
     CHANNEL_HOST = 'redis://127.0.0.1:6379'
