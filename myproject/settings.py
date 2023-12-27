@@ -49,7 +49,8 @@ if not DEBUG:
 
 if not DEBUG:
     # ALLOWED_HOSTS = ENV_VARS['ALLOWED_PROD_HOST'].split(', ')
-    ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', '172.31.39.208', '51.21.112.20']
+    ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', 
+                        '51.21.112.20', '172.31.28.236']
 
 else:
     ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', '127.0.0.1']
@@ -164,6 +165,7 @@ if DEBUG:
 
 else:
     CHANNEL_HOST = f"redis://{ENV_VARS['REDIS_PROD_HOST']}"
+    # CHANNEL_HOST = f"redis://{os.environ['REDIS_PROD_HOST']}"
 
 
 CHANNEL_LAYERS = {
