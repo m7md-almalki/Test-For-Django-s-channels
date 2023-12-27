@@ -47,11 +47,12 @@ if not DEBUG:
     ENV_VARS = get_environ_vars()
 
 
-ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', '127.0.0.1:8000']
 
 if not DEBUG:
     ALLOWED_HOSTS = ENV_VARS['ALLOWED_PROD_HOST'].split(', ')
 
+else:
+    ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', '127.0.0.1:8000']
 # Application definition
 
 INSTALLED_APPS = [
