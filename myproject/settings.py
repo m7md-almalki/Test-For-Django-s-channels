@@ -49,7 +49,7 @@ if not DEBUG:
 
 if not DEBUG:
     # ALLOWED_HOSTS = ENV_VARS['ALLOWED_PROD_HOST'].split(', ')
-    ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', '172.31.39.208', '127.0.0.1']
+    ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', '172.31.39.208', '51.21.112.20']
 
 else:
     ALLOWED_HOSTS = ['testproject.eu-north-1.elasticbeanstalk.com', '127.0.0.1']
