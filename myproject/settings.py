@@ -14,7 +14,6 @@ import os
 import ast
 import subprocess
 
-import environ
 from pathlib import Path
 from logging.handlers import SysLogHandler
 
@@ -39,7 +38,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure--$*acn0u=00==bpis&$ym-9nt5_tr_*tcdwd38#s6rxppqj#4$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # reading .env file
 ENV_VARS = {}
