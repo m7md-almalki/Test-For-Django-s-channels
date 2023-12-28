@@ -27,7 +27,7 @@ class sender(View):
 
         channel_layer = get_channel_layer()
         async_to_sync(channel_layer.group_send)(
-            '{}'.format("test"),
+            "{cluster1}test",
             {
                 'type': 'chat_message',
                 'message': input_value
