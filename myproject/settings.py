@@ -117,6 +117,16 @@ if DEBUG:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+    # DATABASES = {
+    #         'default': {
+    #             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #             'NAME': os.environ['PROD_DB_NAME'],
+    #             'USER': os.environ['PROD_DB_USER'],
+    #             'PASSWORD': os.environ['PROD_DB_PASSWORD'],
+    #             'HOST': os.environ['PROD_DB_HOST'],
+    #             'PORT': os.environ['PROD_DB_PORT'],
+    #         }
+    #     }
     
 else:
     DATABASES = {
@@ -165,7 +175,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR.joinpath('static')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
