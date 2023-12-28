@@ -25,16 +25,13 @@ class sender(View):
     def post(self, request):
         input_value = request.POST["input_value"]
 
-        try:
-            channel_layer = get_channel_layer()
-            async_to_sync(channel_layer.group_send)(
-                '{}'.format("test"),
-                {
-                    'type': 'chat_message',
-                    'message': input_value
-                }
-            )
-        except:
-            pass
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_send)(
+            '{}'.format("test"),
+            {
+                'type': 'chat_message',
+                'message': input_value
+            }
+        )
         
         return render(request=request , template_name="chat/sender.html")
